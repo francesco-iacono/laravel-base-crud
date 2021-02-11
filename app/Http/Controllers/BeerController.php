@@ -25,7 +25,7 @@ class BeerController extends Controller
      */
     public function create()
     {
-        //
+        return 'lista crea';
     }
 
     /**
@@ -45,9 +45,10 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Beer $beer)
     {
-        //
+        return view('beers.show', compact('beer'));
+        
     }
 
     /**
