@@ -11,6 +11,8 @@
         <th>Stile</th>
         <th>Percentuale Alcolica</th>
         <th>Prezzo</th>
+        <th>Created_at</th>
+        <th>Updated_at</th>
         <th></th>
       </tr>
     </thead>
@@ -23,6 +25,8 @@
           <td>{{ $beer->style }}</td>
           <td>{{ $beer->alcohol_content }}%</td>
           <td>€  {{ $beer->price }}</td>
+          <td>{{ $beer->created_at }}</td>
+          <td>{{ $beer->updated_at }}</td>
           <td>
             <a href="{{ route('beers.show', $beer->id) }}" class="btn btn-outline-dark"> MOSTRA</a>
           </td>

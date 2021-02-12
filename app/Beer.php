@@ -9,7 +9,7 @@ class Beer extends Model
     protected $fillable = [
         'name',
         'brand',
-        'style)',
+        'style',
         'alcohol_content',
         'price',
         'description'
