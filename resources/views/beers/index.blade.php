@@ -22,6 +22,7 @@
         <th>Updated_at</th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -40,6 +41,15 @@
           </td>
           <td>
             <a href="{{ route('beers.edit', $beer->id) }}" class="btn btn-outline-dark"> <i class="fas fa-pen"></i> </a>
+          </td>
+          <td>
+            <form action="{{ route('beers.destroy', $beer->id) }}" method="POST">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-outline-dark">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </form>
           </td>
         </tr>
       @endforeach
