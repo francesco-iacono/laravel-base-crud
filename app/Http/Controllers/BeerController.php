@@ -7,6 +7,13 @@ use App\Beer;
 
 class BeerController extends Controller
 {
+    private $beerValidation =  [
+        'name'  => 'required|max:40',
+        'brand' => 'required|max:40',
+        'style' => 'required|max:30',
+        'alcohol_content'  => 'required|numeric',
+        'price' => 'required|numeric'
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -45,9 +52,7 @@ class BeerController extends Controller
                 'style' => 'required|max:30',
                 'alcohol_content'  => 'required|numeric',
                 'price' => 'required|numeric'
-
-            ]
-        );
+        ]);
 
         $beer = new Beer();
         $beer->fill($data);
@@ -75,9 +80,9 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Beer $beer)
     {
-        //
+        return view('beers.edit', compact('beer'));
     }
 
     /**
@@ -87,9 +92,23 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Beer $beer)
     {
-        //
+        $data = $request->all();
+        $request->validate(
+        [
+            'name'  => 'required|max:40',
+            'brand' => 'required|max:40',
+            'style' => 'required|max:30',
+            'alcohol_content'  => 'required|numeric',
+            'price' => 'required|numeric'
+        ]);
+
+        $beer->update($data);
+        /* dd($beer); */
+        return redirect()
+        ->route('beers.index')
+        ->with('message', 'La birra '. $beer->name .  ' è stata modificata correttamente!');
     }
 
     /**
